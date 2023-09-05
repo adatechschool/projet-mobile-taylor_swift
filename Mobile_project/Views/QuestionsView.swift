@@ -29,13 +29,20 @@ struct QuestionsView: View {
                     .bold()
                     .foregroundColor(.gray)
                 
+                AnswerRow(answer : Answer(text: "false", isCorrect: true))
+                AnswerRow(answer: Answer(text: "true", isCorrect: false))
+                
                 
             }
             
+            PrimaryButton(text: "Next")
+            
+            Spacer()
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(red: 0.98, green: 0.92, blue: 0.84))
+        .navigationBarHidden(true)//Supprime bouton 'Back'
     }
 }
 

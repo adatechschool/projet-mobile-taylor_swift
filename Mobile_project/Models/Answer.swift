@@ -6,9 +6,10 @@
 //
 
 import Foundation
-import UIKit
 
-struct Quiz {
-    let image: UIImage?
-    let answer: String
+
+struct Answer: Identifiable {
+    var id = UUID()
+    var text: AttributedString
+    var isCorrect: Bool
 }
