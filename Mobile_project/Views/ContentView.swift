@@ -9,12 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack(spacing: 20) {
-            Circle()
-                .frame(width: 120, height: 120)
-            Text("Flags Quiz")
+        VStack(spacing: 40) {
+            VStack(spacing: 20) {
+                Text("Flag Quiz")
+                    .font(.title)
+                    .fontWeight(.heavy)
+                    .foregroundColor(Color("AccentColor"))
+                
+                Text("Are you ready to play ?")
+                    .foregroundColor(Color("AccentColor"))
+            }
+            PrimaryButton(text: "Let's play !")
         }
-        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .edgesIgnoringSafeArea(.all)
+        .background(Color(red: 0.98, green: 0.92, blue: 0.84))
     }
 }
 
