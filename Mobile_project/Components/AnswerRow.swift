@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AnswerRow: View {
+    @EnvironmentObject var swifties: Swifties
     var answer: Answer
     @State private var isSelected = false
     
@@ -46,5 +47,6 @@ struct AnswerRow: View {
 struct AnswerRow_Previews: PreviewProvider {
     static var previews: some View {
         AnswerRow(answer:Answer(text: "Single", isCorrect: false))
+            .environmentObject(Swifties())
     }
 }

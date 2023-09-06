@@ -21,6 +21,7 @@ struct ContentView: View {
                 }
                 NavigationLink {
                     FlagsView()
+                        .environmentObject(swifties)
                 } label: {
                     PrimaryButton(text: "Let's play !")
                 }
