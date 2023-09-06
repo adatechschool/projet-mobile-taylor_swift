@@ -5,14 +5,16 @@
 
 import Foundation
 
-struct MonVraiModel {
-    let name: String
-    let flags: URL?
-    let region: String
+struct GamePlan: Decodable {
+    
+    var name: String
+    var flags: URL?
+    var region: String
+    
 }
 
 struct ModelMapper {
-    static func map(element: CountryListElement) -> MonVraiModel {
+    static func map(element: CountryListElement) -> GamePlan {
         return .init(name: element.name.common, flags: URL(string: element.flags.png), region: element.region)
     }
 }

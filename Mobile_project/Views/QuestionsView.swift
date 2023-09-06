@@ -23,11 +23,9 @@ struct QuestionsView: View {
             
             ProgressBar(progress: 40)
             
-            VStack(alignment: .leading, spacing: 20) {
-                Text("Question 1")
-                    .font(.system(size: 20))
-                    .bold()
-                    .foregroundColor(.gray)
+            VStack(alignment: .center, spacing: 20) {
+                AsyncImage(url: URL(string: "https://flagcdn.com/w320/ag.png"))
+                    .frame(width: 320, height: 213)
                 
                 AnswerRow(answer : Answer(text: "false", isCorrect: true))
                 AnswerRow(answer: Answer(text: "true", isCorrect: false))
