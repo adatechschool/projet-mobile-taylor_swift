@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FlagsView: View {
+    @EnvironmentObject var swifties: Swifties
     var body: some View {
         QuestionsView()
     }
@@ -16,5 +17,6 @@ struct FlagsView: View {
 struct FlagsView_Previews: PreviewProvider {
     static var previews: some View {
         FlagsView()
+            .environmentObject(Swifties())
     }
 }

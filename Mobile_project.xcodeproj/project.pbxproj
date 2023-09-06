@@ -21,6 +21,7 @@
 		1AAE62EC2AA623C800769C5F /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAE62EB2AA623C800769C5F /* PrimaryButton.swift */; };
 		4D9DEE7D2AA5D63800B602DC /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9DEE7C2AA5D63800B602DC /* Answer.swift */; };
 		4D9DEE7F2AA5DA9F00B602DC /* QuizTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9DEE7E2AA5DA9F00B602DC /* QuizTest.swift */; };
+		4DB280232AA8CB57004E29EE /* Swifties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB280222AA8CB57004E29EE /* Swifties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		1AAE62EB2AA623C800769C5F /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		4D9DEE7C2AA5D63800B602DC /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		4D9DEE7E2AA5DA9F00B602DC /* QuizTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizTest.swift; sourceTree = "<group>"; };
+		4DB280222AA8CB57004E29EE /* Swifties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swifties.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				1A721AB72A9F970900B53FC7 /* Assets.xcassets */,
 				1A721AB92A9F970900B53FC7 /* Preview Content */,
 				1A75A2AC2AA726DF0088E7E4 /* Extensions.swift */,
+				4DB280222AA8CB57004E29EE /* Swifties.swift */,
 			);
 			path = Mobile_project;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				1A75A2B52AA756930088E7E4 /* AnswerRow.swift in Sources */,
 				1A75A2AF2AA727AB0088E7E4 /* QuestionsView.swift in Sources */,
 				1A75A2BB2AA76CCC0088E7E4 /* APIModel.swift in Sources */,
+				4DB280232AA8CB57004E29EE /* Swifties.swift in Sources */,
 				1A75A2B92AA766E70088E7E4 /* Flags.swift in Sources */,
 				1A75A2AD2AA726DF0088E7E4 /* Extensions.swift in Sources */,
 				1A721AB42A9F970800B53FC7 /* Mobile_projectApp.swift in Sources */,

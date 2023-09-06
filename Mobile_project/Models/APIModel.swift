@@ -6,15 +6,18 @@
 import Foundation
 
 struct GamePlan: Decodable {
+    var results: [Result]
     
-    var name: String
-    var flags: URL?
-    var region: String
+    struct Result: Decodable {
+        var name: String
+        var flags: URL?
+        var region: String
+    }
     
 }
 
 struct ModelMapper {
-    static func map(element: CountryListElement) -> GamePlan {
+    static func map(element: CountryListElement) -> GamePlan.Result {
         return .init(name: element.name.common, flags: URL(string: element.flags.png), region: element.region)
     }
 }

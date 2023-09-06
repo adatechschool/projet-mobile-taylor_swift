@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct QuestionsView: View {
+    @EnvironmentObject var swifties: Swifties
     var body: some View {
         VStack(spacing: 40) {
             HStack {
@@ -47,5 +48,6 @@ struct QuestionsView: View {
 struct QuestionsView_Previews: PreviewProvider {
     static var previews: some View {
         QuestionsView()
+            .environmentObject(Swifties())
     }
 }
