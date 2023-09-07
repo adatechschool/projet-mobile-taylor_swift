@@ -14,7 +14,7 @@ class Swifties: ObservableObject {
     @Published private(set) var index = 0
     @Published private(set) var reachedEnd = false
     @Published private(set) var answerSelected = false
-    @Published private(set) var question: AttributedString = ""
+    @Published private(set) var flags: String = "" 
     @Published private(set) var anwserChoices: [Answer] = []
     @Published private(set) var progress: CGFloat = 0.00
     @Published private(set) var score = 0

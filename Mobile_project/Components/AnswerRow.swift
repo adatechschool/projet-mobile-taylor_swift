@@ -34,12 +34,16 @@ struct AnswerRow: View {
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
-        .foregroundColor(isSelected ? Color("AccentColor") : .gray)
+        .foregroundColor(swifties.answerSelected  ? (isSelected ? Color("AccentColor") : .gray) : Color("AccentColor"))
         .background(.white)
         .cornerRadius(10)
         .shadow(color: isSelected ? (answer.isCorrect ? green : red) : .gray, radius: 5, x: 0.5, y: 0.5)
         .onTapGesture {
-            isSelected = true
+            if !swifties.answerSelected {
+                isSelected = true
+                swifties.selectAnswer(answer: answer)
+            }
+            
         }
     }
 }

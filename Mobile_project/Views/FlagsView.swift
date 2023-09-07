@@ -11,6 +11,7 @@ struct FlagsView: View {
     @EnvironmentObject var swifties: Swifties
     var body: some View {
         QuestionsView()
+            .environmentObject(swifties)
     }
 }
 

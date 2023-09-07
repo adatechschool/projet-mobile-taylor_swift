@@ -22,6 +22,14 @@ struct ModelMapper {
     }
 }
 
+//struct ModelMapper {
+   // static func map(element: CountryListElement) -> GamePlan.Result {
+       // let defaultFlagsURL = URL(string: "https://flagcdn.com/w320/ht.png")!
+        //let flagsURL = URL(string: element.flags.png) ?? defaultFlagsURL
+       // return GamePlan.Result(name: element.name.common, flags: flagsURL, region: element.region)
+        //}
+    //}
+
 // MARK: - CountryListElement
 struct CountryListElement: Codable {
     let name: Name

@@ -17,19 +17,23 @@ struct QuestionsView: View {
                 
                 Spacer()
                 
-                Text("1 out 10")
+                Text("\(swifties.index + 1) out of \(swifties.length)")
                     .foregroundColor(Color("AccentColor"))
                     .fontWeight(.heavy)
             }
             
-            ProgressBar(progress: 40)
+            ProgressBar(progress: swifties.progress)
             
             VStack(alignment: .center, spacing: 20) {
-                AsyncImage(url: URL(string: "https://flagcdn.com/w320/ag.png"))
+                AsyncImage(url: URL(string: swifties.flags))
                     .frame(width: 320, height: 213)
                 
                 AnswerRow(answer : Answer(text: "false", isCorrect: true))
+                    .environmentObject(swifties)
                 AnswerRow(answer: Answer(text: "true", isCorrect: false))
+                    .environmentObject(swifties)
+
+                
                 
                 
             }
