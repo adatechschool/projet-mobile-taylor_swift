@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var swifties = Swifties()
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 40) {

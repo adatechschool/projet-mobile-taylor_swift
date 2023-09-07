@@ -25,20 +25,27 @@ struct QuestionsView: View {
             ProgressBar(progress: swifties.progress)
             
             VStack(alignment: .center, spacing: 20) {
-                AsyncImage(url: URL(string: swifties.flags))
-                    .frame(width: 320, height: 213)
-                
-                AnswerRow(answer : Answer(text: "false", isCorrect: true))
-                    .environmentObject(swifties)
-                AnswerRow(answer: Answer(text: "true", isCorrect: false))
-                    .environmentObject(swifties)
+                Text(swifties.question)
+                    .font(.system(size: 20))
+                    .bold()
+                    .foregroundColor(.gray)
+                //AsyncImage(url: URL(string: swifties.flags))
+                    //.frame(width: 320, height: 213)
 
-                
-                
-                
+                ForEach(swifties.answerChoices, id: \.id) {
+                    answer in
+                    AnswerRow(answer: answer)
+                        .environmentObject(swifties)
+                }
             }
             
-            PrimaryButton(text: "Next")
+            Button {
+                swifties.goToNextQuestion()
+            } label: {
+                PrimaryButton(text: "Next", background: swifties.answerSelected ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0, brightness: 0.564, opacity: 0.327))
+            }
+            .disabled(!swifties.answerSelected)
+            
             
             Spacer()
         }

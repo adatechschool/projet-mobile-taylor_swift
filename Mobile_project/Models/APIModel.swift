@@ -10,7 +10,7 @@ struct GamePlan: Decodable {
     
     struct Result: Decodable {
         var name: String
-        var flags: URL?
+        var flags: String
         var region: String
     }
     
@@ -18,7 +18,7 @@ struct GamePlan: Decodable {
 
 struct ModelMapper {
     static func map(element: CountryListElement) -> GamePlan.Result {
-        return .init(name: element.name.common, flags: URL(string: element.flags.png), region: element.region)
+        return .init(name: element.name.common, flags: element.flags.png, region: element.region)
     }
 }
 

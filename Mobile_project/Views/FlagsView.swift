@@ -10,8 +10,32 @@ import SwiftUI
 struct FlagsView: View {
     @EnvironmentObject var swifties: Swifties
     var body: some View {
-        QuestionsView()
-            .environmentObject(swifties)
+        if swifties.reachedEnd {
+            VStack(spacing: 20) {
+                Text("Flag Quiz")
+                    .lilacTitle()
+                
+                Text("Congrats, you completed the game!")
+                
+                Text("You scored \(swifties.score) out of \(swifties.length)")
+                
+                Button {
+                    Task.init {
+                        await swifties.fetchAPI()
+                    }
+                } label: {
+                    PrimaryButton(text: "Play again")
+                }
+            }
+            .foregroundColor(Color("AccentColor"))
+            .padding()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color(red: 0.98, green: 0.92, blue: 0.84))
+        } else {
+            QuestionsView()
+                .environmentObject(swifties)
+        }
+        
     }
 }
 
