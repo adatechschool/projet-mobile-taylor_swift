@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class Swifties: ObservableObject {
-    private(set) var gamePlan: [GamePlan.Result] = []
+    private(set) var gamePlan: [Element] = []
     @Published private(set) var length = 0
     @Published private(set) var index = 0
     @Published private(set) var reachedEnd = false
@@ -26,16 +26,16 @@ class Swifties: ObservableObject {
     }
     
     func fetchAPI() async {
-        guard let url = URL(string: "https://rescountries.com/v3.1/all") else { fatalError("Missing URL")}
+        guard let url = URL(string: "https://restcountries.com/v3.1/all") else { fatalError("Missing URL")}
         let urlRequest = URLRequest(url: url)
         do {
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
-            
+            print("🍩🍩🍩🍩🍩🍩🍩🍩")
+            print(response)
             guard (response as? HTTPURLResponse)?.statusCode == 200 else { fatalError("Error while fetching data")}
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
-            let decodedData = try decoder.decode(GamePlan.self, from: data)
-            let randomInt = Int.random(in: 0..<140)
+            let decodedData = try decoder.decode([Element].self, from: data)
             
             DispatchQueue.main.async {
                 self.index = 0
@@ -43,8 +43,9 @@ class Swifties: ObservableObject {
                 self.progress = 0.00
                 self.reachedEnd = false
     
-                //self.flags = decodedData.results[randomInt].flags
-                self.gamePlan = decodedData.results
+                self.gamePlan = decodedData
+                print("🍩🍩🍩🍩🍩🍩🍩🍩")
+                print(decodedData)
                 self.length = self.gamePlan.count
                 self.setQuestion()
             }
@@ -52,7 +53,6 @@ class Swifties: ObservableObject {
             print("Error fetching Swifties : \(error)")
         }
     }
-    
     func goToNextQuestion() {
         if index + 1 < length {
             index += 1
@@ -66,12 +66,13 @@ class Swifties: ObservableObject {
         progress = CGFloat(Double(index + 1) / Double(length) * 350)
 
         if index < length {
-            let currentFlag = gamePlan[index]
-            flags = currentFlag.flags
-            //answerChoices = currentFlag.answers
-
+            let randomIndex = Int.random(in: 0..<gamePlan.count)
+            let currentFlag = gamePlan[randomIndex]
+            flags = currentFlag.region
+            // answerChoices = currentFlag.answers
         }
     }
+    
     func selectAnswer(answer:Answer) {
         answerSelected = true
         if answer.isCorrect {

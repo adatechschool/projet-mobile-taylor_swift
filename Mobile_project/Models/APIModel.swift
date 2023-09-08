@@ -6,21 +6,20 @@
 import Foundation
 
 struct GamePlan: Decodable {
-    var results: [Result]
-    
-    struct Result: Decodable {
-        var name: String
-        var flags: String
-        var region: String
-    }
-    
+    var results: [Element]
 }
 
-struct ModelMapper {
-    static func map(element: CountryListElement) -> GamePlan.Result {
-        return .init(name: element.name.common, flags: element.flags.png, region: element.region)
-    }
+struct Element: Decodable {
+    var name: Name
+    var flags: Flags
+    var region: String
 }
+
+//struct ModelMapper {
+//    static func map(element: CountryListElement) -> GamePlan.Result {
+//        return .init(name: element.name.common, flags: element.flags.png, region: element.region)
+//    }
+//}
 
 //struct ModelMapper {
    // static func map(element: CountryListElement) -> GamePlan.Result {
@@ -355,7 +354,7 @@ struct Maps: Codable {
 // MARK: - Name
 struct Name: Codable {
     let common, official: String
-    let nativeName: [String: Translation]?
+//    let nativeName: [String: Translation]?
 }
 
 // MARK: - Translation
