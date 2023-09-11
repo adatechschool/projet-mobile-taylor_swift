@@ -11,7 +11,7 @@ import SwiftUI
 class Swifties: ObservableObject {
     private(set) var gamePlan: [Element] = []
     @Published private(set) var length = 0
-    @Published private(set) var index = 0
+    @Published private(set) var index = 1
     @Published private(set) var reachedEnd = false
     @Published private(set) var answerSelected = false
     @Published private(set) var flags: String = ""
@@ -42,6 +42,8 @@ class Swifties: ObservableObject {
                 self.score = 0
                 self.progress = 0.00
                 self.reachedEnd = false
+                print("🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄")
+                print()
     
                 self.gamePlan = decodedData
 //                print("🍩🍩🍩🍩🍩🍩🍩🍩")
