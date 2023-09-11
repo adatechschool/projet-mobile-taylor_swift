@@ -46,6 +46,7 @@ class Swifties: ObservableObject {
                 self.reachedEnd = false
                 self.currentFlag = ""
                 print("🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄")
+                print("Print rebase")
             
     
                 self.gamePlan = decodedData
@@ -75,7 +76,7 @@ class Swifties: ObservableObject {
         if index < length {
             let randomIndex = Int.random(in: 0..<gamePlan.count)
             currentFlag = self.gamePlan[randomIndex].flags.png
-            print(currentFlag)
+            //print(currentFlag)
             //flags = currentFlag.flags.png
             // answerChoices = currentFlag.answers
         }
