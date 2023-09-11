@@ -19,6 +19,7 @@
 		1A75A2B92AA766E70088E7E4 /* Flags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A75A2B82AA766E70088E7E4 /* Flags.swift */; };
 		1A75A2BB2AA76CCC0088E7E4 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A75A2BA2AA76CCC0088E7E4 /* APIModel.swift */; };
 		1AAE62EC2AA623C800769C5F /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAE62EB2AA623C800769C5F /* PrimaryButton.swift */; };
+		4D0AC5E72AAF1AAA0059DEA7 /* Mobile-project-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D0AC5E62AAF1AA90059DEA7 /* Mobile-project-Info.plist */; };
 		4D9DEE7D2AA5D63800B602DC /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9DEE7C2AA5D63800B602DC /* Answer.swift */; };
 		4D9DEE7F2AA5DA9F00B602DC /* QuizTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9DEE7E2AA5DA9F00B602DC /* QuizTest.swift */; };
 		4DB280232AA8CB57004E29EE /* Swifties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB280222AA8CB57004E29EE /* Swifties.swift */; };
@@ -38,6 +39,7 @@
 		1A75A2B82AA766E70088E7E4 /* Flags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flags.swift; sourceTree = "<group>"; };
 		1A75A2BA2AA76CCC0088E7E4 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		1AAE62EB2AA623C800769C5F /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		4D0AC5E62AAF1AA90059DEA7 /* Mobile-project-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Mobile-project-Info.plist"; sourceTree = "<group>"; };
 		4D9DEE7C2AA5D63800B602DC /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		4D9DEE7E2AA5DA9F00B602DC /* QuizTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizTest.swift; sourceTree = "<group>"; };
 		4DB280222AA8CB57004E29EE /* Swifties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swifties.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 		1A721AA72A9F970800B53FC7 = {
 			isa = PBXGroup;
 			children = (
+				4D0AC5E62AAF1AA90059DEA7 /* Mobile-project-Info.plist */,
 				1A721AB22A9F970800B53FC7 /* Mobile_project */,
 				1A721AB12A9F970800B53FC7 /* Products */,
 			);
@@ -190,6 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D0AC5E72AAF1AAA0059DEA7 /* Mobile-project-Info.plist in Resources */,
 				1A721ABB2A9F970900B53FC7 /* Preview Assets.xcassets in Resources */,
 				1A721AB82A9F970900B53FC7 /* Assets.xcassets in Resources */,
 			);
@@ -345,6 +349,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Mobile_project/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Mobile-project-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -374,6 +379,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Mobile_project/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Mobile-project-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
