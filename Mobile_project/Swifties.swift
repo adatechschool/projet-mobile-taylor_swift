@@ -44,8 +44,8 @@ class Swifties: ObservableObject {
                 self.reachedEnd = false
     
                 self.gamePlan = decodedData
-                print("🍩🍩🍩🍩🍩🍩🍩🍩")
-                print(decodedData)
+//                print("🍩🍩🍩🍩🍩🍩🍩🍩")
+//                print(decodedData)
                 self.length = self.gamePlan.count
                 self.setQuestion()
             }
