@@ -25,15 +25,10 @@ struct QuestionsView: View {
             ProgressBar(progress: swifties.progress)
             
             VStack(alignment: .center, spacing: 20) {
-                //Text(swifties.gamePlan[swifties.index].region)
-//                Text(swifties.gamePlan[swifties.index].name.common)
+
                 AsyncImage(url: URL(string: swifties.currentFlag))
-                    .frame(width: 320, height: 213)
-//                    .font(.system(size: 20))
-//                    .bold()
-//                    .foregroundColor(.gray)
-//                AsyncImage(url: URL(string: swifties.flags))
-//                    .frame(width: 320, height: 213)
+                    .frame(maxWidth: 320, maxHeight: 390)
+                
 //                ForEach(swifties.answerChoices, id: \.id) {
 //                    answer in
 //                    AnswerRow(answer: answer)

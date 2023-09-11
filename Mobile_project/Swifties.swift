@@ -82,6 +82,15 @@ class Swifties: ObservableObject {
         }
     }
     
+    func goToNextFlag() {
+        if index + 1 < length {
+            index += 1
+            setQuestion()
+        } else {
+            reachedEnd = true
+        }
+    }
+    
     func selectAnswer(answer:Answer) {
         answerSelected = true
         if answer.isCorrect {
