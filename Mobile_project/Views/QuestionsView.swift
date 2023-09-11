@@ -27,7 +27,7 @@ struct QuestionsView: View {
             VStack(alignment: .center, spacing: 20) {
                 //Text(swifties.gamePlan[swifties.index].region)
 //                Text(swifties.gamePlan[swifties.index].name.common)
-                AsyncImage(url: URL(string: swifties.gamePlan[swifties.index].flags.png))
+                AsyncImage(url: URL(string: swifties.currentFlag))
                     .frame(width: 320, height: 213)
 //                    .font(.system(size: 20))
 //                    .bold()

@@ -11,13 +11,15 @@ import SwiftUI
 class Swifties: ObservableObject {
     private(set) var gamePlan: [Element] = []
     @Published private(set) var length = 0
-    @Published private(set) var index = 1
+    @Published private(set) var index = 0
     @Published private(set) var reachedEnd = false
     @Published private(set) var answerSelected = false
     @Published private(set) var flags: String = ""
     //@Published private(set) var answerChoices: [Answer] = []
     @Published private(set) var progress: CGFloat = 0.00
     @Published private(set) var score = 0
+    @Published private(set) var currentFlag : String = ""
+
     
     init() {
         Task.init {
@@ -30,8 +32,8 @@ class Swifties: ObservableObject {
         let urlRequest = URLRequest(url: url)
         do {
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
-            print("🍩🍩🍩🍩🍩🍩🍩🍩")
-            print(response)
+            //print("🍩🍩🍩🍩🍩🍩🍩🍩")
+            //print(response)
             guard (response as? HTTPURLResponse)?.statusCode == 200 else { fatalError("Error while fetching data")}
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -42,12 +44,15 @@ class Swifties: ObservableObject {
                 self.score = 0
                 self.progress = 0.00
                 self.reachedEnd = false
+                self.currentFlag = ""
                 print("🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄")
-                print()
+            
     
                 self.gamePlan = decodedData
-//                print("🍩🍩🍩🍩🍩🍩🍩🍩")
-//                print(decodedData)
+              print("🍩🍩🍩🍩")
+                
+                print(self.gamePlan[4].flags.png)
+                
                 self.length = self.gamePlan.count
                 self.setQuestion()
             }
@@ -69,8 +74,9 @@ class Swifties: ObservableObject {
 
         if index < length {
             let randomIndex = Int.random(in: 0..<gamePlan.count)
-            let currentFlag = gamePlan[randomIndex]
-            flags = currentFlag.region
+            currentFlag = self.gamePlan[randomIndex].flags.png
+            print(currentFlag)
+            //flags = currentFlag.flags.png
             // answerChoices = currentFlag.answers
         }
     }
