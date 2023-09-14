@@ -48,7 +48,7 @@ playground.xcworkspace
 
 .build/
 Mobile-project-Info.plist
-
+.env
 
 # CocoaPods
 #
