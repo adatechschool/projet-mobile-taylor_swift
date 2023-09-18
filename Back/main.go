@@ -15,11 +15,11 @@ func init() {
 func main() {
 	r := gin.Default()
 
-	r.POST("/posts", controllers.PostsCreate)
-	r.PUT("/posts/:id", controllers.PostsUpdate)
-	r.GET("/posts", controllers.PostsIndex)
-	r.GET("/posts/:id", controllers.PostsShow)
-	r.DELETE("/posts/:id", controllers.PostsDelete)
+	r.POST("/questions", controllers.QuestionsCreate)
+	r.PUT("/questions/:id", controllers.QuestionsUpdate)
+	r.GET("/questions", controllers.QuestionsIndex)
+	r.GET("/questions/:id", controllers.QuestionsShow)
+	r.DELETE("/questions/:id", controllers.QuestionsDelete)
 
 	r.Run() // listen and serve on 0.0.0.0:8080
 }
