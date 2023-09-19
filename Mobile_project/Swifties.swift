@@ -18,8 +18,6 @@ class Swifties: ObservableObject {
     @Published private(set) var currentName: String = ""
     @Published private(set) var currentId : Int = 0
     
-    
-    
     //@Published private(set) var answerChoices: [Answer] = []
     @Published private(set) var progress: CGFloat = 0.00
     @Published private(set) var score = 0
@@ -73,6 +71,7 @@ class Swifties: ObservableObject {
             print("Error fetching Swifties : \(error)")
         }
     }
+    
     func goToNextQuestion() {
         if index + 1 < length {
             index += 1
@@ -81,6 +80,7 @@ class Swifties: ObservableObject {
             reachedEnd = true
         }
     }
+    
     func setQuestion() {
         answerSelected = false
         progress = CGFloat(Double(index + 1) / Double(length) * 350)
