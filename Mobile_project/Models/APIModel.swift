@@ -399,9 +399,8 @@ import Foundation
 
 struct GamePlan: Decodable {
     var questions: [Question]
-    
     struct Question: Decodable{
-        var ID: UUID
+        var ID: Int
         var Name: String
         var Region: String
         var Flag: String
