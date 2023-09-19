@@ -28,6 +28,9 @@ struct QuestionsView: View {
 
                 AsyncImage(url: URL(string: swifties.currentFlag))
                     .frame(maxWidth: 320, maxHeight: 390)
+                Text("\(swifties.currentId)")
+
+
                 
 //                ForEach(swifties.answerChoices, id: \.id) {
 //                    answer in
@@ -41,7 +44,33 @@ struct QuestionsView: View {
             } label: {
                 PrimaryButton(text: "Next", background: swifties.answerSelected ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0, brightness: 0.564, opacity: 0.327))
             }
-            .disabled(!swifties.answerSelected)
+            //.disabled(!swifties.answerSelected)
+            
+            
+            Button {
+               // swifties.goToNextQuestion()
+            } label: {
+                PrimaryButton(text: "\(swifties.currentName)" , background: swifties.answerSelected ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0, brightness: 0.564, opacity: 0.327))
+            }
+            
+            Button {
+               // swifties.goToNextQuestion()
+            } label: {
+                PrimaryButton(text: "Answer 2", background: swifties.answerSelected ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0, brightness: 0.564, opacity: 0.327))
+            }
+            
+            Button {
+               // swifties.goToNextQuestion()
+            } label: {
+                PrimaryButton(text: "Answer 3", background: swifties.answerSelected ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0, brightness: 0.564, opacity: 0.327))
+            }
+            
+            Button {
+               // swifties.goToNextQuestion()
+            } label: {
+                PrimaryButton(text: "Answer 4", background: swifties.answerSelected ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0, brightness: 0.564, opacity: 0.327))
+            }
+            
             
             
             Spacer()

@@ -15,6 +15,11 @@ class Swifties: ObservableObject {
     @Published private(set) var reachedEnd = false
     @Published private(set) var answerSelected = false
     @Published private(set) var flags: String = ""
+    @Published private(set) var currentName: String = ""
+    @Published private(set) var currentId : Int = 0
+    
+    
+    
     //@Published private(set) var answerChoices: [Answer] = []
     @Published private(set) var progress: CGFloat = 0.00
     @Published private(set) var score = 0
@@ -33,7 +38,7 @@ class Swifties: ObservableObject {
         do {
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
             print("🍩🍩🍩🍩🍩🍩🍩🍩")
-            print(response)
+            //print(response)
             
             guard (response as? HTTPURLResponse)?.statusCode == 200 else { fatalError("Error while fetching data")}
             let decoder = JSONDecoder()
@@ -48,15 +53,19 @@ class Swifties: ObservableObject {
                 self.progress = 0.00
                 self.reachedEnd = false
                 self.currentFlag = ""
+                self.currentName = ""
+                self.currentId = 0
+                
                 print("🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄")
-                print("Print rebase")
+                
+                //print("Print rebase")
             
     
                 self.gamePlan = decodedData.questions
-              print("🍩🍩🍩🍩")
+                print("🍩🍩🍩🍩")
                 
                 print(self.gamePlan[4].Flag)
-                
+
                 self.length = self.gamePlan.count
                 self.setQuestion()
             }
@@ -79,6 +88,10 @@ class Swifties: ObservableObject {
         if index < length {
             let randomIndex = Int.random(in: 0..<gamePlan.count)
             currentFlag = self.gamePlan[randomIndex].Flag
+            
+            currentId = self.gamePlan[randomIndex].ID
+            
+            currentName = self.gamePlan[randomIndex].Name
             //print(currentFlag)
             //flags = currentFlag.flags.png
             // answerChoices = currentFlag.answers
