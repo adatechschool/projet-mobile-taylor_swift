@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class Swifties: ObservableObject {
-    private(set) var gamePlan: [Question] = []
+    private(set) var gamePlan: [GamePlan.Question] = []
     @Published private(set) var length = 0
     @Published private(set) var index = 0
     @Published private(set) var reachedEnd = false
@@ -38,7 +38,7 @@ class Swifties: ObservableObject {
             guard (response as? HTTPURLResponse)?.statusCode == 200 else { fatalError("Error while fetching data")}
             let decoder = JSONDecoder()
            // decoder.keyDecodingStrategy = .convertFromSnakeCase
-            let decodedData = try decoder.decode([Question].self, from: data)
+            let decodedData = try decoder.decode(GamePlan.self, from: data)
             
             print(data)
             
@@ -52,7 +52,7 @@ class Swifties: ObservableObject {
                 print("Print rebase")
             
     
-                self.gamePlan = decodedData
+                self.gamePlan = decodedData.questions
               print("🍩🍩🍩🍩")
                 
                 print(self.gamePlan[4].Flag)
