@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class Swifties: ObservableObject {
-    private(set) var gamePlan: [Element] = []
+    private(set) var gamePlan: [Question] = []
     @Published private(set) var length = 0
     @Published private(set) var index = 0
     @Published private(set) var reachedEnd = false
@@ -28,16 +28,19 @@ class Swifties: ObservableObject {
     }
     
     func fetchAPI() async {
-        guard let url = URL(string: "https://restcountries.com/v3.1/all") else { fatalError("Missing URL")}
+        guard let url = URL(string: "http://localhost:3000/questions") else { fatalError("Missing URL")}
         let urlRequest = URLRequest(url: url)
         do {
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
-            //print("🍩🍩🍩🍩🍩🍩🍩🍩")
-            //print(response)
+            print("🍩🍩🍩🍩🍩🍩🍩🍩")
+            print(response)
+            
             guard (response as? HTTPURLResponse)?.statusCode == 200 else { fatalError("Error while fetching data")}
             let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            let decodedData = try decoder.decode([Element].self, from: data)
+           // decoder.keyDecodingStrategy = .convertFromSnakeCase
+            let decodedData = try decoder.decode([Question].self, from: data)
+            
+            print(data)
             
             DispatchQueue.main.async {
                 self.index = 0
@@ -52,7 +55,7 @@ class Swifties: ObservableObject {
                 self.gamePlan = decodedData
               print("🍩🍩🍩🍩")
                 
-                print(self.gamePlan[4].flags.png)
+                print(self.gamePlan[4].Flag)
                 
                 self.length = self.gamePlan.count
                 self.setQuestion()
@@ -75,7 +78,7 @@ class Swifties: ObservableObject {
 
         if index < length {
             let randomIndex = Int.random(in: 0..<gamePlan.count)
-            currentFlag = self.gamePlan[randomIndex].flags.png
+            currentFlag = self.gamePlan[randomIndex].Flag
             //print(currentFlag)
             //flags = currentFlag.flags.png
             // answerChoices = currentFlag.answers

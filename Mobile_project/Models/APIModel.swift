@@ -3,7 +3,7 @@
 //
 //   let countryList = try? JSONDecoder().decode(CountryList.self, from: jsonData)
 
-import Foundation
+/*import Foundation
 
 struct GamePlan: Decodable {
     var results: [Element]
@@ -14,7 +14,7 @@ struct Element: Decodable {
     var flags: Flags
     var region: String
 }
-
+*/
 //struct ModelMapper {
 //    static func map(element: CountryListElement) -> GamePlan.Result {
 //        return .init(name: element.name.common, flags: element.flags.png, region: element.region)
@@ -30,7 +30,7 @@ struct Element: Decodable {
     //}
 
 // MARK: - CountryListElement
-struct CountryListElement: Codable {
+/*struct CountryListElement: Codable {
     let name: Name
     let tld: [String]?
     let cca2: String?
@@ -388,4 +388,22 @@ enum Status: String, Codable {
     case userAssigned = "user-assigned"
 }
 
-typealias CountryList = [CountryListElement]
+typealias CountryList = [CountryListElement]*/
+
+///----------------------------------------------
+///
+///
+
+
+import Foundation
+
+struct GamePlan: Decodable {
+    var questions: [Question]
+}
+
+struct Question: Decodable{
+    var ID: UUID
+    var Name: String
+    var Region: String
+    var Flag: String
+}
