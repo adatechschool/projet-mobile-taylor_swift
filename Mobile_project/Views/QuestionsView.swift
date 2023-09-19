@@ -10,7 +10,7 @@ import SwiftUI
 struct QuestionsView: View {
     @EnvironmentObject var swifties: Swifties
     var body: some View {
-        VStack(spacing: 40) {
+        VStack(spacing: 20) {
             HStack {
                 Text("Flag Quiz")
                     .lilacTitle()
@@ -25,55 +25,29 @@ struct QuestionsView: View {
             ProgressBar(progress: swifties.progress)
             
             VStack(alignment: .center, spacing: 20) {
-
                 AsyncImage(url: URL(string: swifties.currentFlag))
                     .frame(maxWidth: 320, maxHeight: 390)
-                Text("\(swifties.currentId)")
-
-
                 
-//                ForEach(swifties.answerChoices, id: \.id) {
-//                    answer in
-//                    AnswerRow(answer: answer)
-//                        .environmentObject(swifties)
-//                }
+                let randomAnswers = swifties.getRandomAnswers(count: 3)
+                
+                ForEach(0..<randomAnswers.count, id: \.self) { index in
+                    Button {
+                        // Gérez la logique de réponse ici
+                    } label: {
+                        AnswerRow(answerText: randomAnswers[index])
+                    }
+                    .background(swifties.answerSelected ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0, brightness: 0.564, opacity: 0.327))
+                }
+                
+                Button(action: {
+                    swifties.goToNextQuestion()
+                }) {
+                    AnswerRow(answerText: swifties.getRandomAnswers(count: 4)[0])
+                        .background(swifties.answerSelected ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0, brightness: 0.564, opacity: 0.327))
+                }
+                
+                Spacer()
             }
-            
-            Button {
-                swifties.goToNextQuestion()
-            } label: {
-                PrimaryButton(text: "Next", background: swifties.answerSelected ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0, brightness: 0.564, opacity: 0.327))
-            }
-            //.disabled(!swifties.answerSelected)
-            
-            
-            Button {
-               // swifties.goToNextQuestion()
-            } label: {
-                PrimaryButton(text: "\(swifties.currentName)" , background: swifties.answerSelected ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0, brightness: 0.564, opacity: 0.327))
-            }
-            
-            Button {
-               // swifties.goToNextQuestion()
-            } label: {
-                PrimaryButton(text: "Answer 2", background: swifties.answerSelected ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0, brightness: 0.564, opacity: 0.327))
-            }
-            
-            Button {
-               // swifties.goToNextQuestion()
-            } label: {
-                PrimaryButton(text: "Answer 3", background: swifties.answerSelected ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0, brightness: 0.564, opacity: 0.327))
-            }
-            
-            Button {
-               // swifties.goToNextQuestion()
-            } label: {
-                PrimaryButton(text: "Answer 4", background: swifties.answerSelected ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0, brightness: 0.564, opacity: 0.327))
-            }
-            
-            
-            
-            Spacer()
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)

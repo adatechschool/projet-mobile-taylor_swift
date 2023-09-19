@@ -17,7 +17,7 @@ class Swifties: ObservableObject {
     @Published private(set) var flags: String = ""
     @Published private(set) var currentName: String = ""
     @Published private(set) var currentId : Int = 0
-    
+    @Published private(set) var name: [String] = []
     //@Published private(set) var answerChoices: [Answer] = []
     @Published private(set) var progress: CGFloat = 0.00
     @Published private(set) var score = 0
@@ -53,12 +53,15 @@ class Swifties: ObservableObject {
                 self.currentFlag = ""
                 self.currentName = ""
                 self.currentId = 0
+                self.gamePlan = decodedData.questions
+                self.length = self.gamePlan.count
+                self.name = decodedData.questions.map { $0.Name }
+
                 
                 print("🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄")
                 
                 //print("Print rebase")
             
-    
                 self.gamePlan = decodedData.questions
                 print("🍩🍩🍩🍩")
                 
@@ -70,6 +73,16 @@ class Swifties: ObservableObject {
         } catch {
             print("Error fetching Swifties : \(error)")
         }
+    }
+    
+    func getRandomAnswers(count: Int) -> [String] {
+        var randomAnswers: [String] = []
+          for _ in 0..<count {
+              let randomIndex = Int.random(in: 0..<name.count)
+              let randomAnswer = name[randomIndex]
+              randomAnswers.append(randomAnswer)
+          }
+          return randomAnswers
     }
     
     func goToNextQuestion() {
@@ -88,14 +101,16 @@ class Swifties: ObservableObject {
         if index < length {
             let randomIndex = Int.random(in: 0..<gamePlan.count)
             currentFlag = self.gamePlan[randomIndex].Flag
+            let randomAnswers = getRandomAnswers(count: 4)
             
-            currentId = self.gamePlan[randomIndex].ID
+//            currentId = self.gamePlan[randomIndex].ID
             
             currentName = self.gamePlan[randomIndex].Name
             //print(currentFlag)
             //flags = currentFlag.flags.png
             // answerChoices = currentFlag.answers
         }
+        
     }
     
     func goToNextFlag() {
@@ -107,10 +122,10 @@ class Swifties: ObservableObject {
         }
     }
     
-    func selectAnswer(answer:Answer) {
-        answerSelected = true
-        if answer.isCorrect {
-            score += 1
-        }
-    }
+//    func selectAnswer(answer:Answer) {
+//        answerSelected = true
+//        if answer.isCorrect {
+//            score += 1
+//        }
+//    }
 }

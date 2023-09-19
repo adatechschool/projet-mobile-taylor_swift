@@ -9,27 +9,25 @@ import SwiftUI
 
 struct AnswerRow: View {
     @EnvironmentObject var swifties: Swifties
-    var answer: Answer
+    var answerText: String
     @State private var isSelected = false
-    
+
     var green = Color(hue: 0.437, saturation: 0.711, brightness: 0.711)
     var red = Color(red: 0.71, green: 0.094, blue: 0.1)
 
-    
     var body: some View {
         HStack(spacing: 20) {
             Image(systemName: "circle.fill")
                 .font(.caption)
-            
-            Text(answer.text)
+
+            Text(answerText)
                 .bold()
-            
+
             if isSelected {
                 Spacer()
-                
-                Image(systemName: answer.isCorrect ? "checkmark" : "x.circle.fill")
-                    .foregroundColor(answer.isCorrect ? green : red)
-                
+
+                Image(systemName: "checkmark")
+                    .foregroundColor(green)
             }
         }
         .padding()
@@ -37,20 +35,19 @@ struct AnswerRow: View {
         .foregroundColor(swifties.answerSelected ? (isSelected ? Color("AccentColor") : .gray) : Color("AccentColor"))
         .background(.white)
         .cornerRadius(10)
-        .shadow(color: isSelected ? (answer.isCorrect ? green : red) : .gray, radius: 5, x: 0.5, y: 0.5)
+        .shadow(color: isSelected ? green : .gray, radius: 5, x: 0.5, y: 0.5)
         .onTapGesture {
             if !swifties.answerSelected {
-                isSelected = true
-                swifties.selectAnswer(answer: answer)
+                isSelected.toggle()
+                // Gérez la logique de réponse ici en utilisant answerText
             }
-            
         }
     }
 }
 
 struct AnswerRow_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerRow(answer:Answer(text: "Single", isCorrect: false))
+        AnswerRow(answerText: "Single")
             .environmentObject(Swifties())
     }
 }
