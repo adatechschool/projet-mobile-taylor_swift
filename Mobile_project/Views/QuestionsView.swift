@@ -28,12 +28,17 @@ struct QuestionsView: View {
                 AsyncImage(url: URL(string: swifties.currentFlag))
                     .frame(maxWidth: 320, maxHeight: 390)
                 
+                // Génère 4 réponses
                 let randomAnswers = swifties.getRandomAnswers(count: 3)
                 
+                // Pour chaque index dans la plage 0..<randomAnswers.count, exécute le bloc de code suivant
                 ForEach(0..<randomAnswers.count, id: \.self) { index in
+                    // Cette boucle génère des boutons pour chaque réponse aléatoire
+
                     Button {
                         // Gérez la logique de réponse ici
                     } label: {
+                        // Utilise la vue AnswerRow avec le texte de la réponse aléatoire
                         AnswerRow(answerText: randomAnswers[index])
                     }
                     .background(swifties.answerSelected ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0, brightness: 0.564, opacity: 0.327))
@@ -42,7 +47,8 @@ struct QuestionsView: View {
                 Button(action: {
                     swifties.goToNextQuestion()
                 }) {
-                    AnswerRow(answerText: swifties.getRandomAnswers(count: 4)[0])
+                    //count: count:3 génère 3 réponses, [0] accède au 1er élément du tableau
+                    AnswerRow(answerText: swifties.getRandomAnswers(count: 3)[0])
                         .background(swifties.answerSelected ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0, brightness: 0.564, opacity: 0.327))
                 }
                 

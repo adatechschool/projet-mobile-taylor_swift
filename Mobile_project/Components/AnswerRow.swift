@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AnswerRow: View {
     @EnvironmentObject var swifties: Swifties
+    
+    // Texte de la réponse à afficher
     var answerText: String
     @State private var isSelected = false
 
@@ -20,6 +22,7 @@ struct AnswerRow: View {
             Image(systemName: "circle.fill")
                 .font(.caption)
 
+            // Affiche le texte de la réponse en gras
             Text(answerText)
                 .bold()
 

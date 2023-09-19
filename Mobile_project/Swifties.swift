@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 class Swifties: ObservableObject {
+    // Définition des propriétés de l'objet Swifties
     private(set) var gamePlan: [GamePlan.Question] = []
     @Published private(set) var length = 0
     @Published private(set) var index = 0
@@ -23,13 +24,14 @@ class Swifties: ObservableObject {
     @Published private(set) var score = 0
     @Published private(set) var currentFlag : String = ""
 
-    
+    // Initialisateur de la classe Swifties
     init() {
         Task.init {
             await fetchAPI()
         }
     }
     
+    // Fonction pour récupérer les données depuis l'API
     func fetchAPI() async {
         guard let url = URL(string: "http://localhost:3000/questions") else { fatalError("Missing URL")}
         let urlRequest = URLRequest(url: url)
@@ -40,11 +42,11 @@ class Swifties: ObservableObject {
             
             guard (response as? HTTPURLResponse)?.statusCode == 200 else { fatalError("Error while fetching data")}
             let decoder = JSONDecoder()
-           // decoder.keyDecodingStrategy = .convertFromSnakeCase
             let decodedData = try decoder.decode(GamePlan.self, from: data)
             
             print(data)
             
+            // Mise à jour des propriétés de l'objet Swifties avec les données récupérées
             DispatchQueue.main.async {
                 self.index = 0
                 self.score = 0
@@ -56,17 +58,7 @@ class Swifties: ObservableObject {
                 self.gamePlan = decodedData.questions
                 self.length = self.gamePlan.count
                 self.name = decodedData.questions.map { $0.Name }
-
-                
-                print("🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄")
-                
-                //print("Print rebase")
-            
                 self.gamePlan = decodedData.questions
-                print("🍩🍩🍩🍩")
-                
-                print(self.gamePlan[4].Flag)
-
                 self.length = self.gamePlan.count
                 self.setQuestion()
             }
@@ -75,10 +67,17 @@ class Swifties: ObservableObject {
         }
     }
     
+    // Fonction pour obtenir des réponses aléatoires
     func getRandomAnswers(count: Int) -> [String] {
+        //tableau vide pour stocker les réponses aléatoires
         var randomAnswers: [String] = []
+        
+        // Répète le processus 'count' fois pour générer le nombre requis de réponses aléatoires
           for _ in 0..<count {
+              // Génère un index aléatoire compris entre 0 et le nombre total de noms disponibles
               let randomIndex = Int.random(in: 0..<name.count)
+              
+              // Récupère le nom correspondant à l'index aléatoire et l'ajoute au tableau des réponses aléatoires
               let randomAnswer = name[randomIndex]
               randomAnswers.append(randomAnswer)
           }
