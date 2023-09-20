@@ -20,7 +20,7 @@ class Swifties: ObservableObject {
     
     
     
-    //@Published private(set) var answerChoices: [Answer] = []
+    @Published private(set) var answers: [GamePlan] = []
     @Published private(set) var progress: CGFloat = 0.00
     @Published private(set) var score = 0
     @Published private(set) var currentFlag : String = ""
@@ -55,6 +55,7 @@ class Swifties: ObservableObject {
                 self.currentFlag = ""
                 self.currentName = ""
                 self.currentId = 0
+                self.answers = []
                 
                 print("🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄")
                 
@@ -96,6 +97,12 @@ class Swifties: ObservableObject {
             //flags = currentFlag.flags.png
             // answerChoices = currentFlag.answers
         }
+        
+        let questions = gamePlan
+        questions.forEach {question in
+            answers.append(contentsOf: question.Name)
+        }
+        
     }
     
     func goToNextFlag() {
