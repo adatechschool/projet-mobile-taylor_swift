@@ -23,7 +23,8 @@ class Swifties: ObservableObject {
     @Published private(set) var progress: CGFloat = 0.00
     @Published private(set) var score = 0
     @Published private(set) var currentFlag : String = ""
-
+    @Published private(set) var selectedAnswer : String = ""
+    
     // Initialisateur de la classe Swifties
     init() {
         Task.init {
@@ -61,6 +62,7 @@ class Swifties: ObservableObject {
                 self.gamePlan = decodedData.questions
                 self.length = self.gamePlan.count
                 self.setQuestion()
+                self.selectedAnswer = self.currentName
             }
         } catch {
             print("Error fetching Swifties : \(error)")
@@ -81,7 +83,14 @@ class Swifties: ObservableObject {
               let randomAnswer = name[randomIndex]
               randomAnswers.append(randomAnswer)
           }
+        randomAnswers.append(currentName)
           return randomAnswers
+    }
+    
+    func updateCurrentNameForCurrentFlag() {
+        if let question = gamePlan.first(where: { $0.Flag == currentFlag }) {
+            currentName = question.Name
+        }
     }
     
     func goToNextQuestion() {
@@ -100,16 +109,8 @@ class Swifties: ObservableObject {
         if index < length {
             let randomIndex = Int.random(in: 0..<gamePlan.count)
             currentFlag = self.gamePlan[randomIndex].Flag
-            _ = getRandomAnswers(count: 3)
-            
-//            currentId = self.gamePlan[randomIndex].ID
-            
-            currentName = self.gamePlan[randomIndex].Name
-            //print(currentFlag)
-            //flags = currentFlag.flags.png
-            // answerChoices = currentFlag.answers
+            updateCurrentNameForCurrentFlag() // Met à jour currentName en fonction de currentFlag
         }
-        
     }
     
     func goToNextFlag() {
@@ -121,10 +122,11 @@ class Swifties: ObservableObject {
         }
     }
     
-//    func selectAnswer(answer:Answer) {
-//        answerSelected = true
-//        if answer.isCorrect {
-//            score += 1
-//        }
-//    }
+    func selectAnswer(answer:Answer) {
+        answerSelected = true
+        
+        if answer.isCorrect {
+            score += 1
+        }
+    }
 }
