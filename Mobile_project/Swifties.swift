@@ -100,7 +100,7 @@ class Swifties: ObservableObject {
         if index < length {
             let randomIndex = Int.random(in: 0..<gamePlan.count)
             currentFlag = self.gamePlan[randomIndex].Flag
-            let randomAnswers = getRandomAnswers(count: 4)
+            _ = getRandomAnswers(count: 3)
             
 //            currentId = self.gamePlan[randomIndex].ID
             
