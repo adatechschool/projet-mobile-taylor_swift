@@ -1,10 +1,3 @@
-//
-//  AnswerRow.swift
-//  Mobile_project
-//
-//  Created by kady on 05/09/2023.
-//
-
 import SwiftUI
 
 struct AnswerRow: View {
@@ -13,6 +6,7 @@ struct AnswerRow: View {
     // Texte de la réponse à afficher
     var answerText: String
     @State private var isSelected = false
+    var isCorrect: Bool // Ajoutez cette propriété pour indiquer si la réponse est correcte
 
     var green = Color(hue: 0.437, saturation: 0.711, brightness: 0.711)
     var red = Color(red: 0.71, green: 0.094, blue: 0.1)
@@ -29,8 +23,8 @@ struct AnswerRow: View {
             if isSelected {
                 Spacer()
 
-                Image(systemName: "checkmark")
-                    .foregroundColor(green)
+                Image(systemName: isCorrect ? "checkmark" : "x.circle.fill")
+                    .foregroundColor(isCorrect ? green : red) // Utilisez la couleur en fonction de si la réponse est correcte ou non
             }
         }
         .padding()
@@ -38,7 +32,7 @@ struct AnswerRow: View {
         .foregroundColor(swifties.answerSelected ? (isSelected ? Color("AccentColor") : .gray) : Color("AccentColor"))
         .background(.white)
         .cornerRadius(10)
-        .shadow(color: isSelected ? green : .gray, radius: 5, x: 0.5, y: 0.5)
+        .shadow(color: isSelected ? (isCorrect ? green : red) : .gray, radius: 5, x: 0.5, y: 0.5)
         .onTapGesture {
             if !swifties.answerSelected {
                 isSelected.toggle()
@@ -50,7 +44,7 @@ struct AnswerRow: View {
 
 struct AnswerRow_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerRow(answerText: "Single")
+        AnswerRow(answerText: "Single", isCorrect: true)
             .environmentObject(Swifties())
     }
 }

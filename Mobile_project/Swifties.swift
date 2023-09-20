@@ -30,6 +30,7 @@ class Swifties: ObservableObject {
         Task.init {
             await fetchAPI()
         }
+        resetAnswerSelection()
     }
     
     // Fonction pour récupérer les données depuis l'API
@@ -60,7 +61,6 @@ class Swifties: ObservableObject {
                 self.length = self.gamePlan.count
                 self.name = decodedData.questions.map { $0.Name }
                 self.gamePlan = decodedData.questions
-                self.length = self.gamePlan.count
                 self.setQuestion()
                 self.selectedAnswer = self.currentName
             }
@@ -96,6 +96,7 @@ class Swifties: ObservableObject {
     func goToNextQuestion() {
         if index + 1 < length {
             index += 1
+            print("Going to next question")
             setQuestion()
         } else {
             reachedEnd = true
@@ -104,6 +105,7 @@ class Swifties: ObservableObject {
     
     func setQuestion() {
         answerSelected = false
+        resetAnswerSelection()
         progress = CGFloat(Double(index + 1) / Double(length) * 350)
 
         if index < length {
@@ -113,13 +115,8 @@ class Swifties: ObservableObject {
         }
     }
     
-    func goToNextFlag() {
-        if index + 1 < length {
-            index += 1
-            setQuestion()
-        } else {
-            reachedEnd = true
-        }
+    func resetAnswerSelection() {
+        selectedAnswer = ""
     }
     
     func selectAnswer(answer:Answer) {
