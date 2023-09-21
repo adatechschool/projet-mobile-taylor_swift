@@ -3,42 +3,47 @@ import SwiftUI
 struct QuestionsView: View {
     @EnvironmentObject var swifties: Swifties
     @State private var selectedAnswer: String? = nil
-    @State private var answerSelected = false // Variable pour suivre si la réponse a été sélectionnée ou non
 
     var body: some View {
         VStack(spacing: 20) {
             HStack {
                 Text("Flag Quiz")
-                    .lilacTitle()
-                    
+                    .lilacTitle() // Supposons que vous ayez une extension pour appliquer un style de titre personnalisé
+
                 Spacer()
-                
+
                 Text("\(swifties.index + 1) out of \(swifties.length)")
                     .foregroundColor(Color("AccentColor"))
                     .fontWeight(.heavy)
             }
-            
-            ProgressBar(progress: swifties.progress)
-            
+
+            ProgressBar(progress: swifties.progress) // Supposons que ProgressBar soit défini ailleurs dans votre code
+
             VStack(alignment: .center, spacing: 20) {
                 AsyncImage(url: URL(string: swifties.currentFlag))
                     .frame(maxWidth: 320, maxHeight: 390)
-                
+
                 let randomAnswers = swifties.getRandomAnswers(count: 3)
-                
-                ForEach(0..<randomAnswers.count, id: \.self) { index in
+                let shuffledAnswers = randomAnswers.shuffled()
+
+                ForEach(shuffledAnswers, id: \.self) { answerText in
                     Button(action: {
-                        // Met à jour selectedAnswer avec la réponse sélectionnée
-                        selectedAnswer = randomAnswers[index]
-                        if selectedAnswer == swifties.currentName {
+                        // Mettez à jour selectedAnswer avec la réponse sélectionnée
+                        selectedAnswer = answerText
+                        
+                        if answerText == swifties.currentName {
+                            // Réponse correcte, passez à la question suivante
                             swifties.goToNextQuestion()
+                            
+                            // Réinitialisez selectedAnswer pour permettre à l'utilisateur de sélectionner une nouvelle réponse
+                            selectedAnswer = nil
                         }
                     }) {
-                        AnswerRow(answerText: randomAnswers[index], isCorrect: randomAnswers[index] == swifties.currentName)
+                        AnswerRow(answerText: answerText, isCorrect: answerText == swifties.currentName)
+                            .background(selectedAnswer == answerText ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0, brightness: 0.564, opacity: 0.327))
                     }
-                    .background(swifties.answerSelected ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0, brightness: 0.564, opacity: 0.327))
                 }
-                
+
                 Spacer()
             }
         }
