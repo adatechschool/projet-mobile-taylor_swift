@@ -100,7 +100,7 @@ class Swifties: ObservableObject {
     func setQuestion() {
         answerSelected = false
         resetAnswerSelection()
-        progress = CGFloat(Double(index + 1) / Double(length) * 350)
+        progress = CGFloat(Double(index + 1) / Double(10) * 350)
 
         if index < length {
             let randomIndex = Int.random(in: 0..<gamePlan.count)
