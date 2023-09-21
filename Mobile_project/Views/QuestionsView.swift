@@ -11,19 +11,18 @@ struct QuestionsView: View {
                     .lilacTitle() // Supposons que vous ayez une extension pour appliquer un style de titre personnalisé
                 Spacer()
 
-                //Text("\(swifties.index + 1) out of \(swifties.length)")
                 VStack(alignment: .leading) {
-                  Text("Question \(swifties.index + 1)/10")
-                      .font(.subheadline)
-                      .foregroundColor(Color("AccentColor"))
-                  
-                  Text("Score: \(swifties.score)")
-                      .font(.subheadline)
-                      .foregroundColor(Color("AccentColor"))
-              }
-                
-                    .foregroundColor(Color("AccentColor"))
-                    .fontWeight(.heavy)
+                    Text("Question \(swifties.index + 1)/10")
+                        .font(.subheadline)
+                        .foregroundColor(Color("AccentColor"))
+
+                    Text("Score: \(swifties.score)")
+                        .font(.subheadline)
+                        .foregroundColor(Color("AccentColor"))
+                }
+
+                .foregroundColor(Color("AccentColor"))
+                .fontWeight(.heavy)
             }
 
             ProgressBar(progress: swifties.progress) // Supposons que ProgressBar soit défini ailleurs dans votre code
@@ -58,23 +57,24 @@ struct QuestionsView: View {
 
                 Spacer()
             }
-            
-            Button(action: {
-                // Mettez à jour la question en passant à la suivante
-                swifties.goToNextQuestion()
-            }) {
-                Text("Next")
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color("AccentColor"))
-                    .cornerRadius(10)
-            }
-            .disabled(!swifties.answerSelected) // Désactivez le bouton tant qu'aucune réponse n'est sélectionnée
-
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(red: 0.98, green: 0.92, blue: 0.84))
         .navigationBarHidden(true)
+        
+       /* Button(action: {
+            // Mettez à jour la question en passant à la suivante
+            swifties.goToNextQuestion()
+        }) {
+            Text("Next")
+                .foregroundColor(.white)
+                .padding()
+                .background(Color("AccentColor"))
+                .cornerRadius(10)
+        }
+        .disabled(!swifties.answerSelected) // Désactivez le bouton tant qu'aucune réponse n'est sélectionnée*/
     }
 }
+
+       

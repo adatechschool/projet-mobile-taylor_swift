@@ -27,6 +27,6 @@ struct ProgressBar: View {
 
 struct ProgressBar_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressBar(progress: 50)
+        ProgressBar(progress: 10)
     }
 }
