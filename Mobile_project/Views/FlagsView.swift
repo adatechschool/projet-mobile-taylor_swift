@@ -17,8 +17,9 @@ struct FlagsView: View {
                 
                 Text("Congrats, you completed the game!")
                 
-                Text("You scored \(swifties.score) out of \(swifties.length)")
-                
+                //Text("You scored \(swifties.score) out of \(swifties.length)")
+                Text("You scored \(swifties.score) out of 10")
+
                 Button {
                     Task.init {
                         await swifties.fetchAPI()

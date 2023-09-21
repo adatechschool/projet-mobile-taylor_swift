@@ -86,6 +86,7 @@ class Swifties: ObservableObject {
     
     // Passe à la question suivante
     func goToNextQuestion() {
+        let length = 10
         if index + 1 < length {
             index += 1
             print("Passage à la question suivante")

@@ -9,10 +9,19 @@ struct QuestionsView: View {
             HStack {
                 Text("Flag Quiz")
                     .lilacTitle() // Supposons que vous ayez une extension pour appliquer un style de titre personnalisé
-
                 Spacer()
 
-                Text("\(swifties.index + 1) out of \(swifties.length)")
+                //Text("\(swifties.index + 1) out of \(swifties.length)")
+                VStack(alignment: .leading) {
+                  Text("Question \(swifties.index + 1)/10")
+                      .font(.subheadline)
+                      .foregroundColor(Color("AccentColor"))
+                  
+                  Text("Score: \(swifties.score)")
+                      .font(.subheadline)
+                      .foregroundColor(Color("AccentColor"))
+              }
+                
                     .foregroundColor(Color("AccentColor"))
                     .fontWeight(.heavy)
             }
@@ -28,24 +37,40 @@ struct QuestionsView: View {
 
                 ForEach(shuffledAnswers, id: \.self) { answerText in
                     Button(action: {
+                        // Vérifiez si la réponse est correcte
+                        let isCorrect = answerText == swifties.currentName
+                        
                         // Mettez à jour selectedAnswer avec la réponse sélectionnée
                         selectedAnswer = answerText
                         
-                        if answerText == swifties.currentName {
-                            // Réponse correcte, passez à la question suivante
+                        if isCorrect {
+                            // Si la réponse est correcte, passez automatiquement à la question suivante
                             swifties.goToNextQuestion()
                             
-                            // Réinitialisez selectedAnswer pour permettre à l'utilisateur de sélectionner une nouvelle réponse
+                            // Réinitialisez selectedAnswer pour permettre une nouvelle sélection
                             selectedAnswer = nil
                         }
                     }) {
                         AnswerRow(answerText: answerText, isCorrect: answerText == swifties.currentName)
-                            .background(selectedAnswer == answerText ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0, brightness: 0.564, opacity: 0.327))
                     }
+                    .background(selectedAnswer == answerText ? Color("AccentColor") : Color(hue: 1.0, saturation: 0.0, brightness: 0.564, opacity: 0.327))
                 }
 
                 Spacer()
             }
+            
+            Button(action: {
+                // Mettez à jour la question en passant à la suivante
+                swifties.goToNextQuestion()
+            }) {
+                Text("Next")
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color("AccentColor"))
+                    .cornerRadius(10)
+            }
+            .disabled(!swifties.answerSelected) // Désactivez le bouton tant qu'aucune réponse n'est sélectionnée
+
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
