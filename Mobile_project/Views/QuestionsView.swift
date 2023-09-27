@@ -31,17 +31,22 @@ struct QuestionsView: View {
             VStack(alignment: .center, spacing: 20) {
                 AsyncImage(url: URL(string: swifties.currentFlag))
                     .frame(maxWidth: 320, maxHeight: 390)
+                  
 
                 ForEach(shuffledAnswers, id: \.self) { answerText in
+                    
+                    // Vérifiez si la réponse est correcte
+                    let isCorrect = answerText == swifties.currentName
+                    
                     Button(action: {
-                        // Vérifiez si la réponse est correcte
-                        let isCorrect = answerText == swifties.currentName
-                        
                         // Mettez à jour selectedAnswer avec la réponse sélectionnée
                         selectedAnswer = answerText
                         
                         if isCorrect {
                             // Si la réponse est correcte, passez automatiquement à la question suivante
+//                            NavigationLink("Work Folder") {
+//                                FolderDetail(id: workFolder.id)
+//                            }
                             swifties.goToNextQuestion()
                             
                             // Réinitialisez selectedAnswer pour permettre une nouvelle sélection
