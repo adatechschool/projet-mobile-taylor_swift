@@ -3,12 +3,13 @@ import SwiftUI
 struct QuestionsView: View {
     @EnvironmentObject var swifties: Swifties
     @State private var selectedAnswer: String? = nil
+    @State private var shuffledAnswers: [String] = []
 
     var body: some View {
         VStack(spacing: 20) {
             HStack {
                 Text("Flag Quiz")
-                    .lilacTitle() // Supposons que vous ayez une extension pour appliquer un style de titre personnalisé
+                    .lilacTitle()
                 Spacer()
 
                 VStack(alignment: .leading) {
@@ -25,14 +26,11 @@ struct QuestionsView: View {
                 .fontWeight(.heavy)
             }
 
-            ProgressBar(progress: swifties.progress) // Supposons que ProgressBar soit défini ailleurs dans votre code
+            ProgressBar(progress: swifties.progress)
 
             VStack(alignment: .center, spacing: 20) {
                 AsyncImage(url: URL(string: swifties.currentFlag))
                     .frame(maxWidth: 320, maxHeight: 390)
-
-                let randomAnswers = swifties.getRandomAnswers(count: 3)
-                let shuffledAnswers = randomAnswers.shuffled()
 
                 ForEach(shuffledAnswers, id: \.self) { answerText in
                     Button(action: {
@@ -48,6 +46,9 @@ struct QuestionsView: View {
                             
                             // Réinitialisez selectedAnswer pour permettre une nouvelle sélection
                             selectedAnswer = nil
+
+                            // Générez de nouvelles réponses pour la prochaine question
+                            generateRandomAnswers()
                         }
                     }) {
                         AnswerRow(answerText: answerText, isCorrect: answerText == swifties.currentName)
@@ -62,19 +63,15 @@ struct QuestionsView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(red: 0.98, green: 0.92, blue: 0.84))
         .navigationBarHidden(true)
-        
-       /* Button(action: {
-            // Mettez à jour la question en passant à la suivante
-            swifties.goToNextQuestion()
-        }) {
-            Text("Next")
-                .foregroundColor(.white)
-                .padding()
-                .background(Color("AccentColor"))
-                .cornerRadius(10)
+        .onAppear {
+            // Cette logique sera exécutée une seule fois lorsque la vue apparaît pour la première fois
+            generateRandomAnswers()
         }
-        .disabled(!swifties.answerSelected) // Désactivez le bouton tant qu'aucune réponse n'est sélectionnée*/
+    }
+
+    private func generateRandomAnswers() {
+        // Initialiser vos valeurs ici
+        let randomAnswers = swifties.getRandomAnswers(count: 3)
+        shuffledAnswers = randomAnswers.shuffled()
     }
 }
-
-       
