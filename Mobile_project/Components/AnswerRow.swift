@@ -2,11 +2,13 @@ import SwiftUI
 
 struct AnswerRow: View {
     @EnvironmentObject var swifties: Swifties
-    
     // Texte de la réponse à afficher
     var answerText: String
     var isCorrect: Bool
     
+    // Ajoutez une closure pour notifier le parent en cas de réponse correcte
+    var onCorrectAnswer: (() -> Void)?
+
     var body: some View {
         HStack(spacing: 20) {
             Image(systemName: "circle.fill")
@@ -31,14 +33,12 @@ struct AnswerRow: View {
         .onTapGesture {
             if !swifties.answerSelected {
                 swifties.selectAnswer(answer: Answer(text: answerText, isCorrect: isCorrect))
+                
+                // Vérifiez si la réponse est correcte et exécutez la closure si définie
+                if isCorrect, let onCorrectAnswer = onCorrectAnswer {
+                    onCorrectAnswer()
+                }
             }
         }
-    }
-}
- 
-struct AnswerRow_Previews: PreviewProvider {
-    static var previews: some View {
-        AnswerRow(answerText: "Single", isCorrect: true)
-            .environmentObject(Swifties())
     }
 }
